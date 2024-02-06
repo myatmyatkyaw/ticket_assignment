@@ -1,54 +1,76 @@
 @extends('dashboard.index')
 
 @section('content')
-    <div class="container">
+<div class="container">
 
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
 
-                    <div class="card-body align-items-center m-4">
-                        <div class="mb-3 text-secondary">
-                            <h3>Create User</h3>
+                <div class="card-body align-items-center m-4">
+                    <h3 class="text-secondary mb-3"> Create User </h3>
+
+                    <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="col-auto">
+                            <label  class="col-form-label">Name<small class="text-danger">*</small></label>
+                            <input type="text"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+
+                            @error('name')
+                            <div class="text-danger">*{{$message}}</div>
+                            @enderror
+
                         </div>
-                        <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
-                            @csrf
+                        <div class="col-auto">
+                            <label  class="col-form-label">Email</label><small class="text-danger">*</small></label>
+                            <input type="email"  class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
 
-                            <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                            @error('email')
+                            <div class="text-danger">*{{$message}}</div>
+                            @enderror
 
-                            </div>
+                        </div>
+
+                        <div class="col-auto">
+                            <label for="role">Select Role:</label>
+                            <select name="role" id="role" class="form-control @error('role') is-invalid @enderror">
+                                {{-- @foreach($users as $user) --}}
+                                <option value="1">Agent</option>
+                                <option value="2" selected>User</option>
+
+                                {{-- @endforeach --}}
+                            </select>
+
+                            @error('role')
+                                <div class="text-danger">*{{$message}}</div>
+                            @enderror
+
+                        </div>
+
+                        <div class="col-auto">
+                            <label  class="col-form-label">Password<small class="text-danger">*</small></label>
+                            <input type="text"  class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}">
+
+                            @error('password')
+                            <div class="text-danger">*{{$message}}</div>
+                            @enderror
+
+                        </div>
 
 
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email">
-                            </div>
+                        <div class="col-sm mt-3">
+                        <a href="{{ route('user.index') }}" class="btn btn-outline-dark">Back</a>
+                        <button type="submit" class="btn btn-outline-dark">Create</button>
+                        </div>
 
-                            <div class="mb-3">
-                                <label for="pwd" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="pwd" name="password">
-                            </div>
 
-                            <div class="mb-3">
-                                <label for="role" class="form-label">Role</label>
-                                {{-- <input type="text" class="form-control" id="role"> --}}
 
-                                <select class="form-select" aria-label="Default select example" id="role" name="role">
-                                    <option selected>Role</option>
-                                    <option value="1">Admin</option>
-                                    <option value="2">Agent</option>
-                                    <option value="3">User</option>
-                                  </select>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+</form>
+</div>
 @endsection
