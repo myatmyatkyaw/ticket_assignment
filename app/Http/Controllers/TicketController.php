@@ -40,15 +40,22 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $ticket = new Ticket();
-        $ticket->title = $request->title;
-        $ticket->message = $request->message;
-        $ticket->priority = $request->priority;
-        $ticket->category_id = $request->category_id;
-        $ticket->label_id = $request->label_id;
-        $ticket->status = $request->status;
+        $ticket = Ticket::create($request->all());
+
+        $ticket->labels()->attach($request->labels);
+        $ticket->categories()->attach($request->categories);
+
+        // $ticket = new Ticket();
+        // $ticket->title = $request->title;
+        // $ticket->message = $request->message;
+        // $ticket->priority = $request->priority;
+        // $ticket->category_id = $request->category;
+        // $ticket->label_id = $request->label;
+        // $ticket->status = $request->status;
         // $ticket->file = $request->file;
-        $ticket->save();
+        // $ticket->save();
+        // $ticket->label()->sync($request->input('label', []));
+        // $ticket->category()->sync($request->input('category',[]));
         return redirect()->route('ticket.index')->with('success','Ticket is created successfully');
     }
 

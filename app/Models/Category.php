@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Ticket;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
     use HasFactory;
-    public function category(){
-        return $this->belongsTo(Category::class);
+    public function ticket()
+    {
+        return $this->belongsToMany(Ticket::class);
     }
 }
