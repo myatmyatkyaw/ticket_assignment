@@ -8,15 +8,14 @@
             <div class="card">
 
                 <div class="card-body align-items-center m-4">
-                    <h3 class="text-secondary mb-3"> Edit Label </h3>
+                    <h3 class="text-secondary mb-3"> Create Category </h3>
 
-                    <form action="{{ route('label.update',$label->id) }}" method="post" enctype="multipart/form-data">
-                        @method('PUT')
+                    <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="col-auto">
-                            <label class="col-form-label">Label<small class="text-danger">*</small></label>
-                            <input type="text"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $label->name }}">
+                            <label class="col-form-label">Category<small class="text-danger">*</small></label>
+                            <input type="text"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
 
                             @error('name')
                             <div class="text-danger">*{{$message}}</div>
@@ -24,8 +23,8 @@
 
                         </div>
                         <div class="col-sm mt-3">
-                        <a href="{{ route('label.index') }}" class="btn btn-outline-dark">Back</a>
-                        <button type="submit" class="btn btn-outline-dark">Update</button>
+                        <a href="{{ route('category.index') }}" class="btn btn-outline-dark">Back</a>
+                        <button type="submit" class="btn btn-outline-dark">Create</button>
                         </div>
                     </form>
                 </div>

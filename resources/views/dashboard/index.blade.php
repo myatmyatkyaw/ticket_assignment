@@ -76,7 +76,7 @@
 
           <li class="nav-item">
             <a href="{{ route('user.create') }}" class="nav-link">
-              <i class="nav-icon fas fa-plus-circle"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                Create User
 
@@ -86,7 +86,7 @@
 
           <li class="nav-item">
             <a href="{{ route('user.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-users"></i>
               <p>
               User List
               </p>
@@ -98,7 +98,7 @@
 
           <li class="nav-item">
             <a href="{{ route('label.create') }}" class="nav-link">
-              <i class="nav-icon fas fa-plus-circle"></i>
+              <i class="nav-icon fas fa-tag"></i>
               <p>
                Create Label
 
@@ -108,9 +108,49 @@
 
           <li class="nav-item">
             <a href="{{ route('label.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tags"></i>
               <p>
               Label List
+
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('category.create') }}" class="nav-link">
+              <i class="nav-icon fas fa-list"></i>
+              <p>
+              Create Category
+
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('category.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+              Category List
+
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('ticket.create') }}" class="nav-link">
+              <i class="nav-icon fas fa-credit-card"></i>
+              <p>
+              Create Ticket
+
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('ticket.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-id-card"></i>
+              <p>
+              Ticket List
 
               </p>
             </a>

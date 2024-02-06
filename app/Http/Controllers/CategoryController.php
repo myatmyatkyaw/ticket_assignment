@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Label;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class LabelController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class LabelController extends Controller
      */
     public function index()
     {
-        $labels = Label::all();
-        return view('label.index',compact('labels'));
+        $categories = Category::All();
+        return view('category.index',compact('categories'));
     }
 
     /**
@@ -25,7 +25,7 @@ class LabelController extends Controller
      */
     public function create()
     {
-        return view('label.create');
+        return view('category.create');
     }
 
     /**
@@ -36,11 +36,10 @@ class LabelController extends Controller
      */
     public function store(Request $request)
     {
-        $label = new Label();
-        $label->name = $request->name;
-        $label->save();
-        return redirect()->route('label.index')->with('success','New user is created successfully');
-
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+        return redirect()->route('category.index')->with('success','Category is created successfully');
     }
 
     /**
@@ -62,9 +61,8 @@ class LabelController extends Controller
      */
     public function edit($id)
     {
-        $label = Label::find($id);
-        return view('label.edit',compact('label'));
-
+        $category = Category::find($id);
+        return view('category.edit',compact('category'));
     }
 
     /**
@@ -76,10 +74,10 @@ class LabelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $label = Label::find($id);
-        $label->name = $request->name;
-        $label->update();
-        return redirect()->route('label.index')->with('update','Label is updated successfully');
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->update();
+        return redirect()->route('category.index')->with('update','Category is updated successfully');
     }
 
     /**
@@ -90,10 +88,11 @@ class LabelController extends Controller
      */
     public function destroy($id)
     {
-        $label = Label::find($id);
-        if($label){
-            $label->delete();
+        $category = Category::find($id);
+        if($category){
+            $category->delete();
+
         }
-        return redirect()->route('label.index')->with('delete','Label is deleted');
+        return redirect()->route('category.index')->with('delete','Category is deleted!');
     }
 }
